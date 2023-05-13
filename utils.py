@@ -150,8 +150,7 @@ def data_scaling(data):
 
 
 
-def test_model(model_path,X_test,Y_test):
-    model = keras.models.load_model(model_path)
+def test_model(model,X_test,Y_test):
     Y_test_pred=model.predict(X_test)
     Y_test_pred=np.argmax(Y_test_pred,axis=1)
     accurate_accuracy= np.sum(Y_test_pred==Y_test)/Y_test.shape[0]
