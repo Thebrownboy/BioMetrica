@@ -154,9 +154,10 @@ def data_scaling(data):
 
 
 
-def test_model(model,X_test,Y_test):
+def test_model(model,X_test,Y_test,axis=True):
     Y_test_pred=model.predict(X_test)
-    Y_test_pred=np.argmax(Y_test_pred,axis=1)
+    if axis : 
+        Y_test_pred=np.argmax(Y_test_pred,axis=1)
     accurate_accuracy= np.sum(Y_test_pred==Y_test)/Y_test.shape[0]
     classify_repo = classification_report(Y_test, Y_test_pred)
     
@@ -164,7 +165,14 @@ def test_model(model,X_test,Y_test):
     
 
 
-
+def build_one_layer_model(gamma=2, learning_rate=0.01):
+    model_one_layer  = keras.Sequential([keras.Input(shape=(23)),
+                           layers.Dense(16,activation='relu'),
+                           layers.Dropout(0.4),
+                        layers.Dense(4,activation='softmax')])
+    model_NN.compile(loss=SparseCategoricalFocalLoss(from_logits=False,gamma=gamma),
+              optimizer=keras.optimizers.Adam(learning_rate=learning_rate),
+              metrics=["accuracy"])
 
     
     
