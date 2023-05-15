@@ -10,6 +10,7 @@ from tensorflow.keras import layers
 from focal_loss import SparseCategoricalFocalLoss
 import numpy as np 
 from sklearn.metrics import classification_report
+import pickle 
 
 def cleaning_data(df):
     copy_df = df.copy()
@@ -128,7 +129,10 @@ class CustomCallback(keras.callbacks.Callback):
             self.max_val_acc=val_acc
             if tra_acc > self.max_tra_acc : 
                 self.max_tra_acc = tra_acc 
-            self.model.save(self.model_path)
+                
+            with open(self.model_path,"wb") as fb: 
+                pickle.dump(self.model,fb)
+#                 self.model.save(self.model_path)
 
 
 
