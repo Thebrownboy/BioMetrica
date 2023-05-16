@@ -89,9 +89,13 @@ print(X_test.shape,Y_test.shape)
 
 model= None 
 
-with open("before_samplingmaster.h5","rb") as fb : 
+with open("fifth_model.h5","rb") as fb : 
     model = pickle.load(fb)
 
 
 accuracy , repo =  test_model(model, X_test, Y_test)
 
+print(repo)
+
+
+print(accuracy)
