@@ -170,9 +170,10 @@ def build_one_layer_model(gamma=2, learning_rate=0.01):
                            layers.Dense(16,activation='relu'),
                            layers.Dropout(0.4),
                         layers.Dense(4,activation='softmax')])
-    model_NN.compile(loss=SparseCategoricalFocalLoss(from_logits=False,gamma=gamma),
+    model_one_layer.compile(loss=SparseCategoricalFocalLoss(from_logits=False,gamma=gamma),
               optimizer=keras.optimizers.Adam(learning_rate=learning_rate),
               metrics=["accuracy"])
+    return model_one_layer
 
     
     
