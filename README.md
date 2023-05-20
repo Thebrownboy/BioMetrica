@@ -33,7 +33,7 @@ By implementing these preprocessing steps, we aim to improve the quality and sui
 
 ## Insights
 **The feature importance analysis reveals that weight, age, and height of the person are the primary features that any model would prioritize in learning their significance. These features can be combined to calculate the Body Mass Index (BMI). However, it is important to note that BMI represents the true function in this problem. Therefore, including it as a feature in the model would be redundant or unnecessary. As a result, we do not require a machine learning model to solve this particular problem.**
-<img src="Images/feature_Importance.png">
+<img src="Images/feature_Importance.png" style="width:100%">
 
 ## Models
 - Logistic Regression
@@ -43,7 +43,12 @@ By implementing these preprocessing steps, we aim to improve the quality and sui
 
 ### Logistic Regression
 
- 
+**Firstly, we begin with a basic implementation of Logistic Regression without any additional techniques. This initial step allows us to tune the hyperparameters and identify the optimal configuration.**
+
+- Tuning the 'C' Hyperparameter
+  <img src='Images/best-c-for-logisticpng' style="width:100%">
+- Exploring various approaches(class weights (CW) , over-sampling(OS))
+  <img src='Images/different_approch.png' style="width:100%">
 
 
 
