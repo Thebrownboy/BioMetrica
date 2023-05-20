@@ -7,14 +7,29 @@ With a total of 1477 data samples, it is important to address the class imbalanc
 
 
 ## Data Visualization 
-- Imbalanced target feature 
+- **Imbalanced target feature** 
   <img src="Images/Body_Level.png">
-- Some features also exhibit imbalances, where the majority of their values tend to be skewed towards a single value.
-    <img src ='Images/Meal_Count.png' style="height:400px ">
-    <img src ='Images/Transport.png' style="height:400px ">
-- Furthermore, the presence of skewness can also be observed in certain data instances.
-    <img src ='Images/Weight.png' style=" height:400px ">
- 
+- **Some features also exhibit imbalances, where the majority of their values tend to be skewed towards a single value.**
+    <br>
+    <img src ='Images/Meal_Count.png' >
+    <br>
+    <img src ='Images/Transport.png' >
+- **Furthermore, the presence of skewness can also be observed in certain data instances.**
+    <br>
+    <img src ='Images/Weight.png' >
+    
+    
+## Data preprocessing 
+
+To prepare the data for analysis, the following preprocessing techniques will be applied:
+
+- Standardization: The feature values will be standardized to have a mean of 0 and a standard deviation of 1, ensuring consistent scaling across different features.
+
+- Log Transformation (for skewed data): When data exhibits skewness, a logarithmic transformation will be applied to reduce the impact of extreme values and achieve a more normal distribution.
+
+- Oversampling (to tackle the imbalancing problem): To address the imbalance in certain features, oversampling techniques such as Synthetic Minority Over-sampling Technique (SMOTE) could be employed.**But we found that the regular random oversampling was a good choice** 
+
+By implementing these preprocessing steps, we aim to improve the quality and suitability of the data for the subsequent stages of the project.
 
  
 
