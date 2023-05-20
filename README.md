@@ -16,7 +16,7 @@ With a total of 1477 data samples, it is important to address the class imbalanc
     <img src ='Images/Transport.png' >
 - **Furthermore, the presence of skewness can also be observed in certain data instances.**
     <br>
-    <img src ='Images/Weight.png' >
+    <img src ='Images/Age.png' >
     
     
 ## Data preprocessing 
@@ -30,6 +30,14 @@ To prepare the data for analysis, the following preprocessing techniques will be
 - Oversampling (to tackle the imbalancing problem): To address the imbalance in certain features, oversampling techniques such as Synthetic Minority Over-sampling Technique (SMOTE) could be employed.**But we found that the regular random oversampling was a good choice** 
 
 By implementing these preprocessing steps, we aim to improve the quality and suitability of the data for the subsequent stages of the project.
+
+## Models
+- Logistic Regression
+- Random forest regression
+- SVM
+- NN (Neural Network)
+
+### Logistic Regression
 
  
 
