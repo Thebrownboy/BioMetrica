@@ -130,9 +130,9 @@ class CustomCallback(keras.callbacks.Callback):
             if tra_acc > self.max_tra_acc : 
                 self.max_tra_acc = tra_acc 
                 
-            with open(self.model_path,"wb") as fb: 
-                pickle.dump(self.model,fb)
-#                 self.model.save(self.model_path)
+#             with open(self.model_path,"wb") as fb: 
+#                 pickle.dump(self.model,fb)
+            self.model.save(self.model_path)
 
 
 

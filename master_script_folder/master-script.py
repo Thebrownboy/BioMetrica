@@ -2,7 +2,9 @@ import pickle
 import numpy as np 
 import pandas as pd
 from sklearn.metrics import classification_report
-
+import tensorflow as tf 
+from tensorflow import keras 
+from focal_loss import SparseCategoricalFocalLoss
 
 def cleaning_data(df):
     copy_df = df.copy()
@@ -45,12 +47,12 @@ def cleaning_data(df):
         
         
     copy_df.drop(['Transport'],axis=1,inplace=True)
-    copy_df["Body_Level"].replace(["Body Level 1","Body Level 2","Body Level 3","Body Level 4"],
-                              [0,1,2,3],inplace=True)
+    # copy_df["Body_Level"].replace(["Body Level 1","Body Level 2","Body Level 3","Body Level 4"],
+    #                           [0,1,2,3],inplace=True)
     
     cols=['Gender', 'Age', 'Height', 'Weight', 'H_Cal_Consump', 'Veg_Consump',
        'Water_Consump', 'Alcohol_Consump', 'Smoking', 'Meal_Count', 'Fam_Hist',
-       'H_Cal_Burn', 'Phys_Act', 'Time_E_Dev', 'Body_Level', 'FBM__Always',
+       'H_Cal_Burn', 'Phys_Act', 'Time_E_Dev', 'FBM__Always',
        'FBM__Frequently', 'FBM__Sometimes', 'FBM__no', 'Automobile', 'Bike',
        'Motorbike', 'Public_Transportation', 'Walking']
     copy_df=copy_df[cols]
@@ -58,18 +60,19 @@ def cleaning_data(df):
 
 dict_class= {0:"Body Level 1",1:"Body Level 2",2:"Body Level 3",3:"Body Level 4"}
 
-def test_model(model,X_test,Y_test):
+def test_model(model,X_test,Y_test,axis=True):
     Y_test_pred=model.predict(X_test)
-    Y_test_pred=np.argmax(Y_test_pred,axis=1)
-    with open("pred.txt","w") as file  :
-        for i in Y_test_pred : 
-            file.write(dict_class[i])
-            file.write("\n")
-
+    if axis : 
+        Y_test_pred=np.argmax(Y_test_pred,axis=1)
     accurate_accuracy= np.sum(Y_test_pred==Y_test)/Y_test.shape[0]
     classify_repo = classification_report(Y_test, Y_test_pred)
     
     return accurate_accuracy , classify_repo
+
+    #accurate_accuracy= np.sum(Y_test_pred==Y_test)/Y_test.shape[0]
+    #classify_repo = classification_report(Y_test, Y_test_pred)
+    
+    #return accurate_accuracy , classify_repo
 
 
 
@@ -82,20 +85,17 @@ with open("scaler",'rb')as fb :
 test = pd.read_csv("test.csv")
 test= cleaning_data(test)
 
-Y_test=test["Body_Level"].to_numpy()
-X_test=test.drop(["Body_Level"],axis=1).to_numpy()
+X_test=test.to_numpy()
 X_test = scaler.transform(X_test)
-print(X_test.shape,Y_test.shape)
-
-model= None 
-
-with open("fifth_model.h5","rb") as fb : 
-    model = pickle.load(fb)
 
 
-accuracy , repo =  test_model(model, X_test, Y_test)
 
-print(repo)
+model = keras.models.load_model("fifth_model.h5")
 
+with open("pred.txt","w+") as fb : 
 
-print(accuracy)
+    y_pred = model.predict(X_test)
+    Y_tes   t_pred=np.argmax(y_pred,axis=1)
+    for i in Y_test_pred : 
+        fb.writelines(dict_class[i])
+        fb.writelines('\n')
