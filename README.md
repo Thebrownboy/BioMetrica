@@ -31,6 +31,10 @@ To prepare the data for analysis, the following preprocessing techniques will be
 
 By implementing these preprocessing steps, we aim to improve the quality and suitability of the data for the subsequent stages of the project.
 
+## Insights
+**The feature importance analysis reveals that weight, age, and height of the person are the primary features that any model would prioritize in learning their significance. These features can be combined to calculate the Body Mass Index (BMI). However, it is important to note that BMI represents the true function in this problem. Therefore, including it as a feature in the model would be redundant or unnecessary. As a result, we do not require a machine learning model to solve this particular problem.**
+<img src="Images/feature_Importance.png">
+
 ## Models
 - Logistic Regression
 - Random forest regression
