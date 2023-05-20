@@ -8,15 +8,15 @@ With a total of 1477 data samples, it is important to address the class imbalanc
 
 ## Data Visualization 
 - **Imbalanced target feature** 
-  <img src="Images/Body_Level.png">
+  <img src="Images/Body_Level.png" style="width:80%" align='center'>
 - **Some features also exhibit imbalances, where the majority of their values tend to be skewed towards a single value.**
     <br>
-    <img src ='Images/Meal_Count.png' >
+    <img src ='Images/Meal_Count.png' style="width:80%" align='center'>
     <br>
-    <img src ='Images/Transport.png' >
+    <img src ='Images/Transport.png' style="width:80%" align='center' >
 - **Furthermore, the presence of skewness can also be observed in certain data instances.**
     <br>
-    <img src ='Images/Age.png' >
+    <img src ='Images/Age.png' style="width:80%" align='center' >
     
     
 ## Data preprocessing 
@@ -70,7 +70,34 @@ balance between easy and hard examples:
 - To do so, we add a weighting parameter (α), which is usually the inverse class frequency. α  is the weighted term whose value is α for positive class and 1-α for negative 
  <img src='Images/Focal_loss_2.png' style="width:80%" align='center'>
 
+## Results 
+<table>
+  <thead>
+    <tr>
+      <td>Model</td>
+      <td>train-accuracy</td>
+      <td>val-accuracy</td>
+      <td>test-accuracy</td>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr>
+      <td>before-sampling</td>
+      <td>0.9878</td>
+      <td>0.983</td>
+      <td>0.9715</td>
+    </tr>
+    <tr>
+      <td>after-sampling</td>
+      <td>0.9965</td>
+      <td>0.9863</td>
+      <td>0.993</td>
+    </tr>
+  </tbody> 
+</table>
 
+## Interpreting the Results
 
-
+As demonstrated earlier, the focal loss approach has yielded the best model performance in terms of accuracy and F1-score, even without any preprocessing steps applied to the data. However, when we further applied oversampling with a 0.5 ratio, we observed even better results in terms of accuracy and F1-score. This indicates that combining the benefits of focal loss with a controlled oversampling strategy can lead to further improvements in model performance. By balancing the class distribution while maintaining the benefits of focal loss, we can effectively address the challenges posed by imbalanced data and achieve enhanced accuracy and F1-score.
 
